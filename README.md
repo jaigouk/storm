@@ -70,7 +70,7 @@ python -m scripts.run_prewriting --input-source file --input-path ../FreshWiki/t
 - `--engine` (choices=[`gpt-4`, `gpt-35-turbo`]): the LLM engine used for generating the outline
 - `--do-research`: if True, simulate conversation to research the topic; otherwise, load the results.
 - `--max-conv-turn`: the maximum number of questions for each information-seeking conversation
-- `--max-perspective`: the maximum number of perspectives to be considered, each perspective corresponds to an information-seeking conversation. 
+- `--max-perspective`: the maximum number of perspectives to be considered, each perspective corresponds to an information-seeking conversation.
   - STORM also uses a general conversation to collect basic information about the topic. So, the maximum number of QA pairs is `max_turn * (max_perspective + 1)`. :bulb: Reducing `max_turn` or `max_perspective` can speed up the process and reduce the cost but may result in less comprehensive outline.
   - The parameter will not have any effect if `--disable-perspective` is set (the perspective-driven question asking is disabled).
 
@@ -96,12 +96,12 @@ python -m scripts.run_writing --input-source console --engine gpt-4 --do-polish-
 ```
 - The script will ask you to enter the `Topic`. Please enter the same topic as the one used in the pre-writing stage.
 
-The generated article will be saved in `{output_dir}/{topic}/storm_gen_article.txt` and the references corresponding to citation index will be saved in `{output_dir}/{topic}/url_to_info.json`. If `--do-polish-article` is set, the polished article will be saved in `{output_dir}/{topic}/storm_gen_article_polished.txt`. 
+The generated article will be saved in `{output_dir}/{topic}/storm_gen_article.txt` and the references corresponding to citation index will be saved in `{output_dir}/{topic}/url_to_info.json`. If `--do-polish-article` is set, the polished article will be saved in `{output_dir}/{topic}/storm_gen_article_polished.txt`.
 
 ## Customize the STORM Configurations
 We set up the default LLM configuration in `LLMConfigs` in [src/modules/utils.py](src/modules/utils.py). You can use `set_conv_simulator_lm()`,`set_question_asker_lm()`, `set_outline_gen_lm()`, `set_article_gen_lm()`, `set_article_polish_lm()` to override the default configuration. These functions take in an instance from `dspy.dsp.LM` or `dspy.dsp.HFModel`.
 
-:bulb: **For a good practice,** 
+:bulb: **For a good practice,**
 - choose a cheaper/faster model for `conv_simulator_lm` which is used to split queries, synthesize answers in the conversation.
 - if you need to conduct the actual writing step, choose a more powerful model for `article_gen_lm`. Based on our experiments, weak models are bad at generating text with citations.
 
@@ -138,10 +138,9 @@ Contact person: [Yijia Shao](mailto:shaoyj@stanford.edu) and [Yucheng Jiang](mai
 Please cite our paper if you use this code or part of it in your work:
 ```bibtex
 @inproceedings{shao2024assisting,
-      title={{Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models}}, 
+      title={{Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models}},
       author={Yijia Shao and Yucheng Jiang and Theodore A. Kanell and Peter Xu and Omar Khattab and Monica S. Lam},
       year={2024},
       booktitle={Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)}
 }
 ```
-
