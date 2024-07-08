@@ -8,7 +8,7 @@
 This repository contains the code for our NAACL 2024 paper [Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models](https://arxiv.org/abs/2402.14207) by [Yijia Shao](https://cs.stanford.edu/~shaoyj), [Yucheng Jiang](https://yucheng-jiang.github.io/), Theodore A. Kanell, Peter Xu, [Omar Khattab](https://omarkhattab.com/), and [Monica S. Lam](https://suif.stanford.edu/~lam/).
 =======
 <p align="center">
-| <a href="http://storm.genie.stanford.edu"><b>Research preview</b></a> | <a href="https://arxiv.org/abs/2402.14207"><b>Paper</b></a> | <b>Documentation (WIP)</b> |
+| <a href="http://storm.genie.stanford.edu"><b>Research preview</b></a> | <a href="https://arxiv.org/abs/2402.14207"><b>Paper</b></a> | <a href="https://storm-project.stanford.edu/"><b>Website</b></a> |
 
 
 **Latest News** 🔥
