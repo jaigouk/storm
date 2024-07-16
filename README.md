@@ -1,28 +1,10 @@
-<p align="center">
-  <img src="assets/logo.svg" style="width: 25%; height: auto;">
-</p>
-
 # STORM: Synthesis of Topic Outlines through Retrieval and Multi-perspective Question Asking
 
-<<<<<<< HEAD
 This repository contains the code for our NAACL 2024 paper [Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models](https://arxiv.org/abs/2402.14207) by [Yijia Shao](https://cs.stanford.edu/~shaoyj), [Yucheng Jiang](https://yucheng-jiang.github.io/), Theodore A. Kanell, Peter Xu, [Omar Khattab](https://omarkhattab.com/), and [Monica S. Lam](https://suif.stanford.edu/~lam/).
-=======
-<p align="center">
-| <a href="http://storm.genie.stanford.edu"><b>Research preview</b></a> | <a href="https://arxiv.org/abs/2402.14207"><b>Paper</b></a> | <a href="https://storm-project.stanford.edu/"><b>Website</b></a> |
-
-
-**Latest News** 🔥
-
-- [2024/07] We add `VectorRM` to support grounding on user-provided documents, complementing existing support of search engines (`YouRM`, `BingSearch`). (check out [#58](https://github.com/stanford-oval/storm/pull/58))
-- [2024/07] We release demo light for developers a minimal user interface built with streamlit framework in Python, handy for local development and demo hosting (checkout [#54](https://github.com/stanford-oval/storm/pull/54))
-- [2024/06] We will present STORM at NAACL 2024! Find us at Poster Session 2 on June 17 or check our [presentation material](assets/storm_naacl2024_slides.pdf). 
-- [2024/05] We add Bing Search support in [rm.py](src/rm.py). Test STORM with `GPT-4o` - we now configure the article generation part in our demo using `GPT-4o` model.
-- [2024/04] We release refactored version of STORM codebase! We define [interface](src/interface.py) for STORM pipeline and reimplement STORM-wiki (check out [`src/storm_wiki`](src/storm_wiki)) to demonstrate how to instantiate the pipeline. We provide API to support customization of different language models and retrieval/search integration.
->>>>>>> 1b64b8a (Auto-sync-2024-05-13-16-07-47)
 
 ## Overview [(Try STORM now!)](https://storm.genie.stanford.edu/)
 <p align="center">
-  <img src="assets/overview.svg" style="width: 90%; height: auto;">
+  <img src="assets/overview.png" style="width: 90%; height: auto;">
 </p>
 STORM is a LLM system that writes Wikipedia-like articles from scratch based on Internet search.
 
@@ -75,88 +57,7 @@ Below, we provide a quick start guide to run STORM locally to reproduce our expe
     TAVILY_API_KEY=<your_api_tavily_com_key>
     ```
 
-<<<<<<< HEAD
 ## Paper Experiments
-=======
-
-### 2. Running STORM-wiki locally
-
-**To run STORM with `gpt` family models with default configurations**: Make sure you have set up the OpenAI API key and run the following command.
-
-```
-python examples/run_storm_wiki_gpt.py \
-    --output-dir $OUTPUT_DIR \
-    --retriever you \
-    --do-research \
-    --do-generate-outline \
-    --do-generate-article \
-    --do-polish-article
-```
-- `--do-research`: if True, simulate conversation to research the topic; otherwise, load the results.
-- `--do-generate-outline`: If True, generate an outline for the topic; otherwise, load the results.
-- `--do-generate-article`: If True, generate an article for the topic; otherwise, load the results.
-- `--do-polish-article`:  If True, polish the article by adding a summarization section and (optionally) removing duplicate content.
-
-
-We provide more example scripts under [`examples`](examples) to demonstrate how you can run STORM using your favorite language models or grounding on your own corpus.
-
-
-
-## Customize STORM
-
-### Customization of the Pipeline
-
-Besides running scripts in `examples`, you can customize STORM based on your own use case. STORM engine consists of 4 modules:
-
-1. Knowledge Curation Module: Collects a broad coverage of information about the given topic.
-2. Outline Generation Module: Organizes the collected information by generating a hierarchical outline for the curated knowledge.
-3. Article Generation Module: Populates the generated outline with the collected information.
-4. Article Polishing Module: Refines and enhances the written article for better presentation.
-
-The interface for each module is defined in `src/interface.py`, while their implementations are instantiated in `src/storm_wiki/modules/*`. These modules can be customized according to your specific requirements (e.g., generating sections in bullet point format instead of full paragraphs).
-
-:star2: **You can share your customization of `Engine` by making PRs to this repo!**
-
-### Customization of Retriever Module
-
-As a knowledge curation engine, STORM grabs information from the Retriever module. The Retriever modules are implemented in [`src/rm.py`](src/rm.py). Currently, STORM supports the following retrievers:
-
-- `YouRM`: You.com search engine API
-- `BingSearch`: Bing Search API
-- `VectorRM`: a retrieval model that retrieves information from user provide corpus
-
-:star2: **PRs for integrating more search engines/retrievers are highly appreciated!**
-
-### Customization of Language Models
-
-STORM provides the following language model implementations in [`src/lm.py`](src/lm.py):
-
-- `OpenAIModel`
-- `ClaudeModel`
-- `VLLMClient`
-- `TGIClient`
-- `TogetherClient`
-
-:star2: **PRs for integrating more language model clients are highly appreciated!**
-
-:bulb: **For a good practice,**
-
-- choose a cheaper/faster model for `conv_simulator_lm` which is used to split queries, synthesize answers in the conversation.
-- if you need to conduct the actual writing step, choose a more powerful model for `article_gen_lm`. Based on our experiments, weak models are bad at generating text with citations.
-- for open models, adding one-shot example can help it better follow instructions.
-
-Please refer to the scripts in the [`examples`](examples) directory for concrete guidance on customizing the language model used in the pipeline.
-
-## Replicate NAACL2024 result
-
-Please switch to the branch `NAACL-2024-code-backup`
-
-<details>
-  <summary>Show me instructions</summary>
-
-### Paper Experiments
-
->>>>>>> 1b64b8a (Auto-sync-2024-05-13-16-07-47)
 The FreshWiki dataset used in our experiments can be found in [./FreshWiki](FreshWiki).
 
 Run the following commands under [./src](src).
@@ -226,17 +127,12 @@ python eval_article_quality.py --input-path ../FreshWiki/topic_list.csv --gt-dir
 ### Use the Metric Yourself
 The similarity-based metrics (i.e., ROUGE, entity recall, and heading entity recall) are implemented in [eval/metrics.py](eval/metrics.py).
 
-For rubric grading, we use the [prometheus-13b-v1.0](https://huggingface.co/prometheus-eval/prometheus-13b-v1.0) introduced in [this paper](https://arxiv.org/abs/2310.08491). [eval/evaluation_prometheus.py](eval/evaluation_prometheus.py) provides the entry point of using the metric.
+For rubric grading, we use the [prometheus-13b-v1.0](https://huggingface.co/kaist-ai/prometheus-13b-v1.0) introduced in [this paper](https://arxiv.org/abs/2310.08491). [eval/evaluation_prometheus.py](eval/evaluation_prometheus.py) provides the entry point of using the metric.
 
 ## Contributions
 If you have any questions or suggestions, please feel free to open an issue or pull request. We welcome contributions to improve the system and the codebase!
 
 Contact person: [Yijia Shao](mailto:shaoyj@stanford.edu) and [Yucheng Jiang](mailto:yuchengj@stanford.edu)
-
-## Acknowledgement
-We would like to thank Wikipedia for their excellent open-source content. The FreshWiki dataset is sourced from Wikipedia, licensed under the Creative Commons Attribution-ShareAlike (CC BY-SA) license.
-
-We are very grateful to [Michelle Lam](https://michelle123lam.github.io/) for designing the logo for this project and [Dekun Ma](https://dekun.me) for leading the UI development.
 
 ## Citation
 Please cite our paper if you use this code or part of it in your work:
